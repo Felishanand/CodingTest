@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CodingTest.Models;
+using System;
+using System.Collections.Generic;
 using System.Text;
 
 namespace CodingTest.Rules
@@ -23,7 +25,7 @@ namespace CodingTest.Rules
         {
             throw new NotImplementedException();
         }
-        public virtual string[] GetItemNames()
+        public virtual List<KeyValuePair<Item,int>> GetItemCombinationList()
         {
             throw new NotImplementedException();
         }
@@ -37,9 +39,6 @@ namespace CodingTest.Rules
             throw new NotImplementedException();
         }
 
-        public virtual int[] GetItemQtys()
-        {
-            throw new NotImplementedException();
-        }
+ 
     }
 }

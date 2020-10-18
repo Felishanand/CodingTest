@@ -29,16 +29,35 @@ namespace ConsoleApp1
 
             Kart objKart = new Kart(objPurchasedItemList) ;
 
-            IPromotionRule objRule = new BuyNQtyAtFixedPrice("A", 130, 3,"A");
+            IPromotionRule objRule = new BuyNQtyAtFixedPrice("Promotion A", 130, 3,"A");
 
             IPromotion objPromotion = new PromotionEngine();
 
             objPromotion.ApplyPromotion(objRule, objKart);
-            objRule = new BuyNQtyAtFixedPrice("B", 45, 2, "B");
+            objRule = new BuyNQtyAtFixedPrice("Promotion B", 45, 2, "B");
 
             objPromotion.ApplyPromotion(objRule, objKart);
 
             Console.WriteLine("Total Amount Payable :" + objKart.CalculateAmountPayable());
+            List<KeyValuePair<Item, int>> kvpList = new List<KeyValuePair<Item, int>>();
+            kvpList.Add(new KeyValuePair<Item, int>(objItemC, 1));
+            kvpList.Add(new KeyValuePair<Item, int>(objItemD, 1));
+
+            List<KartItem> objPurchasedItemList1 = new List<KartItem>();
+            
+            KartItem objKartItem5 = new KartItem(objItemC, 2);
+            KartItem objKartItem6 = new KartItem(objItemD, 1);
+
+            objPurchasedItemList1.Add(objKartItem5);
+            objPurchasedItemList1.Add(objKartItem6);
+
+            Kart objKart1 = new Kart(objPurchasedItemList1);
+
+            objRule = new BuyNItemsAtFixedPrice("Combination C & D", 30, kvpList);
+            objPromotion.ApplyPromotion(objRule, objKart1);
+            objPromotion.ApplyPromotion(objRule, objKart);
+            Console.WriteLine("Total Amount Payable for Kart :" + objKart.CalculateAmountPayable());
+            Console.WriteLine("Total Amount Payable :" + objKart1.CalculateAmountPayable());
             Console.WriteLine("Hello World!");
 
             Console.ReadLine();

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using CodingTest.Models;
 
 namespace CodingTest
 {
@@ -11,10 +13,9 @@ namespace CodingTest
 
         public string GetItemName();
 
-        public string[] GetItemNames();
+        public List<KeyValuePair<Item, int>> GetItemCombinationList();
 
         public int GetItemQty();
 
-        public int[] GetItemQtys();
-    }
+       }
 }

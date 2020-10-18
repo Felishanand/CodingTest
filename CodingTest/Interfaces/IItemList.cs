@@ -7,5 +7,7 @@ namespace CodingTest
     public interface IItemList
     {
         public List<KartItem> GetItemList();
+
+        public void AddKartItem(KartItem item);
     }
 }

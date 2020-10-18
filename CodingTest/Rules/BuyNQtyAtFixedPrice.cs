@@ -10,13 +10,7 @@
                 IsOnSingleItem = true;
                 ItemName = itemName;
         }
-        //public BuyNQtyAtFixedPrice(string promotionName, double promotionAmount, int minQty )
-        //   {
-        //       //base(promotionName, promotionAmount);
-        //       ItemMinQtyToAvailThisOffer = minQty;
-        //       IsOnSingleItem = true;
-        //   }
-
+        
         public override double GetRuleAmount()
         {
             return PromotionAmount;
