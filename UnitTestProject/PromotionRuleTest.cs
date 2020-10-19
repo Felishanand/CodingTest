@@ -21,7 +21,7 @@ namespace UnitTestProject
             Item objItemB = new Item() { ItemId = 2, ItemName = "B", Description = "Test Item B", ItemPrice = 30 };
             Item objItemC = new Item() { ItemId = 3, ItemName = "C", Description = "Test Item C", ItemPrice = 20 };
             Item objItemD = new Item() { ItemId = 4, ItemName = "D", Description = "Test Item D", ItemPrice = 15 };
-
+            
             KartItem objKartItem1 = new KartItem(objItemA, 1);
             KartItem objKartItem2 = new KartItem(objItemB, 1);
             KartItem objKartItem3 = new KartItem(objItemC, 1);
