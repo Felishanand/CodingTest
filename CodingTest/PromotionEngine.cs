@@ -12,49 +12,33 @@ namespace CodingTest
             throw new NotImplementedException();
         }
 
-        public IPromotionResult ApplyPromotion(IPromotionRule promotion, IItemList items)
+        public IPromotionResult ApplyPromotion(IPromotionRule promotion, IItemList items, bool onSingleItem)
         {
-            PromotionResult objResult = new PromotionResult();
-            if (promotion.IsOnSingleItem)
-            {
-                var strItemName = promotion.GetItemName();
-                var itemQty = promotion.GetItemQty();
-
-                var itemList = items.GetItemList(); 
-                foreach(var item in itemList)
-                {
-                    if(item.ItemObj.ItemName == strItemName) 
-                    {
-                        if(item.ItemQuantity < itemQty)
-                        {
-                            //Promotion cannot be applied.
-                            objResult.PromotionApplied = false;
-                        }
-                        else
-                        {
-                            if (item.ItemQuantity == itemQty)
-                            {
-                                item.AmountPayable = promotion.GetRuleAmount();
-                            }
-                            else
-                            {
-                                int multiplier = item.ItemQuantity / itemQty;
-                                int remain = item.ItemQuantity % itemQty;
-                                item.AmountPayable = (promotion.GetRuleAmount() * multiplier) + (item.ItemObj.ItemPrice * remain);
-                            }
-                            objResult.PromotionApplied = true;
-                        }
-                        break;
-                    }
-                }
+           PromotionResult objResult = new PromotionResult();
+           var strItemName = promotion.GetItemName();
+           var itemQty = promotion.GetItemQty();
+           var itemList = items.GetItemList();
+                
+           try
+           {
+                var item = itemList.Where(ci => ci.ItemObj.ItemName == strItemName && ci.ItemQuantity >= itemQty).Select(ci => ci).Single();
+                int multiplier = item.ItemQuantity / itemQty;
+                int remain = item.ItemQuantity % itemQty;
+                item.AmountPayable = (promotion.GetRuleAmount() * multiplier) + (item.ItemObj.ItemPrice * remain);
+                objResult.PromotionApplied = true;
             }
-            else
-            {
-                ApplyPromotionForItemsCombination(promotion, items);
-            }
+           catch(Exception)
+           {
+                    objResult.PromotionApplied = false;
+           }
             return objResult; 
         }
-        public void  ApplyPromotionForItemsCombination(IPromotionRule promotion, IItemList items)
+
+        public void ApplyPromotion(IPromotionRule promotion, IItemList items)
+        {
+                ApplyPromotionForItemsCombination(promotion, items);
+        }
+        private void  ApplyPromotionForItemsCombination(IPromotionRule promotion, IItemList items)
         {
             var discountCombinationItems = promotion.GetItemCombinationList();
             var shoppingCartClone = items.GetItemList();

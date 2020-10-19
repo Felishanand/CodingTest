@@ -6,6 +6,8 @@ namespace CodingTest
     {
         IPromotionResult ApplyPromotion(IPromotionFactory promotionFactory, IPromotionRule promotion, IItemList items);
 
-        IPromotionResult ApplyPromotion( IPromotionRule promotion, IItemList items);
+        IPromotionResult ApplyPromotion( IPromotionRule promotion, IItemList items, bool singleItemRule);
+
+        void ApplyPromotion(IPromotionRule promotion, IItemList items);
     }
 }

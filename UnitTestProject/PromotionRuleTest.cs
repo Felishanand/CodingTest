@@ -41,8 +41,8 @@ namespace UnitTestProject
             //Creating instance of RuleEngine
             IPromotion objPromotion = new PromotionEngine();
 
-            objPromotion.ApplyPromotion(objRuleA, objKart);
-            objPromotion.ApplyPromotion(objRuleB, objKart);
+            objPromotion.ApplyPromotion(objRuleA, objKart, true );
+            objPromotion.ApplyPromotion(objRuleB, objKart, true);
             
             Assert.AreEqual(100, objKart.CalculateAmountPayable());
         }
@@ -71,8 +71,8 @@ namespace UnitTestProject
 
             IPromotion objPromotion = new PromotionEngine();
 
-            objPromotion.ApplyPromotion(objRuleA, objKart);
-            objPromotion.ApplyPromotion(objRuleB, objKart);
+            objPromotion.ApplyPromotion(objRuleA, objKart, true);
+            objPromotion.ApplyPromotion(objRuleB, objKart, true);
 
             Assert.AreEqual(370, objKart.CalculateAmountPayable());
         }
@@ -111,8 +111,8 @@ namespace UnitTestProject
             //Creating instance of RuleEngine
             IPromotion objPromotion = new PromotionEngine();
 
-            objPromotion.ApplyPromotion(objRuleA, objKart);
-            objPromotion.ApplyPromotion(objRuleB, objKart);
+            objPromotion.ApplyPromotion(objRuleA, objKart, true);
+            objPromotion.ApplyPromotion(objRuleB, objKart, true);
             objPromotion.ApplyPromotion(objRuleC, objKart);
 
             Assert.AreEqual(280, objKart.CalculateAmountPayable());
